@@ -1,0 +1,145 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    :root {
+      --cup-color: #D4A574;
+      --liquid-color: #8B6F47;
+      --fill-level: 0%;
+    }
+    
+    .cup-body {
+      fill: #FFFFFF;
+      stroke: var(--cup-color);
+      stroke-width: 2;
+    }
+    
+    .liquid {
+      fill: var(--liquid-color);
+    }
+    
+    .shadow {
+      fill: var(--cup-color);
+      opacity: 0.12;
+    }
+    
+    .highlight {
+      fill: #FFFFFF;
+      opacity: 0.6;
+    }
+  </style>
+  
+  <defs>
+    <clipPath id="cupInterior">
+      <path d="M 60 55
+               Q 60 120 65 135
+               Q 68 145 75 150
+               Q 85 155 100 155
+               Q 115 155 125 150
+               Q 132 145 135 135
+               Q 140 120 140 55
+               Z" />
+    </clipPath>
+    
+    <clipPath id="liquidClip">
+      <rect x="0" y="calc(200 - var(--fill-level, 0%))" width="200" height="200" />
+    </clipPath>
+    
+    <linearGradient id="cupGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FEFEFE;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F8F8F8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Liquid fill with clip -->
+  <g clip-path="url(#cupInterior)">
+    <g clip-path="url(#liquidClip)">
+      <path class="liquid" d="M 58 50
+                              Q 58 120 63 135
+                              Q 66 145 73 150
+                              Q 83 156 100 156
+                              Q 117 156 127 150
+                              Q 134 145 137 135
+                              Q 142 120 142 50
+                              Z" />
+      <!-- Liquid surface highlight -->
+      <ellipse cx="100" cy="55" rx="40" ry="4" class="highlight" />
+    </g>
+  </g>
+  
+  <!-- Cup body with tapered shape -->
+  <path class="cup-body" 
+        fill="url(#cupGradient)"
+        d="M 60 55
+           Q 60 120 65 135
+           Q 68 145 75 150
+           Q 85 155 100 155
+           Q 115 155 125 150
+           Q 132 145 135 135
+           Q 140 120 140 55
+           Z" />
+  
+  <!-- Cup rim (wider ellipse) -->
+  <ellipse cx="100" cy="55" rx="40" ry="6" 
+           fill="url(#cupGradient)"
+           stroke="var(--cup-color)"
+           stroke-width="2" />
+  
+  <!-- Inner rim shadow -->
+  <ellipse cx="100" cy="56" rx="37" ry="5" class="shadow" />
+  
+  <!-- Left shadow on cup body -->
+  <path class="shadow" d="M 60 55
+                           Q 60 120 65 135
+                           Q 67 142 72 147
+                           Q 75 150 78 151
+                           Q 70 145 67 135
+                           Q 62 120 62 55
+                           Z" />
+  
+  <!-- Right highlight on cup body -->
+  <path class="highlight" d="M 138 55
+                              Q 138 120 133 135
+                              Q 131 142 128 147
+                              Q 125 150 122 151
+                              Q 130 145 133 135
+                              Q 138 120 138 55
+                              Z" />
+  
+  <!-- Bottom base highlight -->
+  <ellipse cx="100" cy="153" rx="15" ry="3" 
+           class="shadow" />
+  
+  <!-- Handle outer path -->
+  <path fill="url(#cupGradient)"
+        stroke="var(--cup-color)"
+        stroke-width="2"
+        d="M 140 75
+           C 140 75 142 74 144 74
+           C 153 74 162 80 164 92
+           C 166 104 164 116 156 124
+           C 152 128 146 130 142 130
+           C 140 130 140 128 140 128
+           L 142 126
+           C 144 126 148 125 152 121
+           C 158 115 160 105 158 95
+           C 156 85 150 79 144 78
+           C 142 78 141 79 141 79
+           Z" />
+  
+  <!-- Handle inner shadow -->
+  <path class="shadow" d="M 144 78
+                           C 150 79 156 85 158 95
+                           C 160 105 158 115 152 121
+                           C 149 124 145 125 143 126
+                           L 143 79
+                           Z" />
+  
+  <!-- Handle highlight -->
+  <path class="highlight" d="M 141 79
+                              C 141 79 142 78 144 78
+                              C 146 78 148 79 150 80
+                              L 150 120
+                              C 148 121 146 122 144 122
+                              L 141 120
+                              Z" />
+</svg>
