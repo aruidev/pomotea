@@ -1,5 +1,21 @@
 .html,
 body {
     font-family: 'Quicksand', sans-serif;
+    background-color: var(--background-color);
 }
 
+:root[data-theme="tea"] {
+    --primary-color: #ff6f61;
+    --secondary-color: #4caf50;
+    --background-color: #F7F2EC;
+    --text-color: #3c3c3c;
+    --cup-color: #D4A574;
+    --liquid-color: #8BC34A;
+}
+
+.coffee[data-theme="coffee"] {
+    --background-color: #2e2b28;
+    --text-color: #f0ebe3;
+    --cup-color: #dbcabd;
+    --liquid-color: #6F4E37;
+}
