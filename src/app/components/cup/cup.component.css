@@ -1,0 +1,36 @@
+:host {
+    --cup-color: #D4A574;
+    --liquid-color: #6aa84f;
+}
+
+.cup-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.cup-container {
+    width: 600px;
+    margin: auto;
+}
+
+.cup-outline {
+    fill: none;
+    stroke: var(--cup-color);
+    stroke-width: 2;
+}
+
+.liquid {
+    fill: var(--liquid-color);
+    transition: transform 0.5s ease-in-out;
+}
+
+.shadow {
+    fill: var(--cup-color);
+    opacity: 0.12;
+}
+
+.highlight {
+    fill: #fff;
+    opacity: 0.6;
+}
