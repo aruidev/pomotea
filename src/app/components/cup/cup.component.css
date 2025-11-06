@@ -1,8 +1,3 @@
-:host {
-    --cup-color: #D4A574;
-    --liquid-color: #6aa84f;
-}
-
 .cup-svg {
     width: 100%;
     height: auto;
@@ -10,8 +5,9 @@
 }
 
 .cup-container {
-    width: 600px;
-    margin: auto;
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
 }
 
 .cup-outline {
@@ -27,7 +23,7 @@
 
 .shadow {
     fill: var(--cup-color);
-    opacity: 0.12;
+    opacity: 0.18;
 }
 
 .highlight {

@@ -12,8 +12,8 @@
                 Q140 120 140 55
                 Z" />
             </clipPath>
-
-            <!-- Liquid level controlled via CSS variable -->
+            
+            <!-- Liquid level shape -->
             <clipPath id="liquidClip" clipPathUnits="userSpaceOnUse">
                 <rect id="liquid-level" x="0" width="200" [attr.height]="cupHeight" [attr.y]="liquidY" />
             </clipPath>
@@ -21,9 +21,9 @@
             <linearGradient id="cupGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="#FEFEFE" />
                 <stop offset="50%" stop-color="#FFFFFF" />
-                <stop offset="100%" stop-color="#F8F8F8" />
+                <stop offset="100%" stop-color="#F8F1EC" />
             </linearGradient>
-        </defs>
+        </defs >
 
         <!-- Cup fill behind liquid -->
         <path fill="url(#cupGradient)" stroke="none" d="M60 55
@@ -33,7 +33,7 @@
         Q115 155 125 150
         Q132 145 135 135
         Q140 120 140 55
-        Z" />
+        Z" /> 
 
         <!-- Liquid -->
         <g clip-path="url(#cupInterior)">

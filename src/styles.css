@@ -1,21 +1,59 @@
-.html,
-body {
-    font-family: 'Quicksand', sans-serif;
-    background-color: var(--background-color);
-}
-
-:root[data-theme="tea"] {
-    --primary-color: #ff6f61;
+:root, .tea[data-theme="tea"] {
+    --font-family: 'Quicksand', sans-serif;
+    --primary-color: #6491309f;
     --secondary-color: #4caf50;
-    --background-color: #F7F2EC;
+    --background-color: #F8F1EC;
+    --background-color-alt: #8bc34a16;
+    --border-color: white;
     --text-color: #3c3c3c;
-    --cup-color: #D4A574;
-    --liquid-color: #8BC34A;
+    --cup-color: hsl(31, 53%, 74%);
+    --liquid-color: #8bc34a81;
 }
 
 .coffee[data-theme="coffee"] {
     --background-color: #2e2b28;
+    --background-color-alt: #3c3c3c;
+    --border-color: #3c3c3c;
     --text-color: #f0ebe3;
     --cup-color: #dbcabd;
     --liquid-color: #6F4E37;
+}
+
+.html,
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color-alt);
+    color: var(--text-color);
+    color-scheme: light dark;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: var(--background-color);
+}
+
+header, footer {
+    text-align: center;
+    padding: 1rem;
+    color: var(--text-color);
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    font-family: var(--font-family);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
