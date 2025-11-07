@@ -1,0 +1,47 @@
+.theme-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.65rem;
+  margin-right: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.12s ease, background-color 0.12s ease;
+  position: relative;
+  user-select: none;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.theme-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.theme-option span {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  line-height: 1;
+}
+
+.theme-option.active,
+.theme-option:has(input:checked) {
+  outline: 2px solid var(--primary-color);    
+  outline-offset: 3px;                   
+  background-color: var(--background-color); 
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);    
+}
+
+/* foco accesible por teclado */
+.theme-option:has(input:focus-visible) {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+.theme-option:last-child {
+  margin-right: 0;
+}

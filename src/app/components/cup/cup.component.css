@@ -1,12 +1,12 @@
 .cup-svg {
-    width: 100%;
+    width: 90%;
     height: auto;
     display: block;
+    margin: 0 auto;
 }
 
 .cup-container {
-    width: 400px;
-    height: 300px;
+    width: clamp(240px, 100vw, 500px);
     margin: 0 auto;
 }
 

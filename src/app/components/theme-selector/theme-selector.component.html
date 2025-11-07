@@ -1,0 +1,22 @@
+<div ngbAccordion [animation]="true"  class="accordion">
+  <div ngbAccordionItem class="accordion-item">
+    <h2 ngbAccordionHeader class="accordion-header">
+      <button class="secondary-btn" ngbAccordionButton>Change Animation</button>
+    </h2>
+    <div ngbAccordionCollapse class="accordion-collapse">
+      <div ngbAccordionBody class="accordion-body">
+        <ng-template>
+          <label class="secondary-btn theme-option">
+            <input type="radio" name="theme" (change)="setTheme('tea')" />
+            <span>🍵 Tea</span>
+          </label>
+
+          <label class="secondary-btn theme-option">
+            <input type="radio" name="theme" (change)="setTheme('coffee')" />
+            <span>☕ Coffee</span>
+          </label>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
