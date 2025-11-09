@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { map } from 'rxjs';
 import { TimerService } from '../../services/timer.service';
 
 @Component({
   selector: 'app-timer',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, FormsModule],
   templateUrl: './timer.component.html',
   styleUrl: './timer.component.css',
 })

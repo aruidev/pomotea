@@ -13,10 +13,18 @@ class LocalStorageMock {
 describe('TimerService', () => {
   let service: TimerService;
   let ls: LocalStorageMock;
+  let notifications: any[];
 
   beforeEach(() => {
     ls = new LocalStorageMock();
     (globalThis as any).localStorage = ls; // override
+    // Mock Notification API
+    notifications = [];
+    (globalThis as any).Notification = class {
+      static permission = 'granted';
+      static requestPermission() { return Promise.resolve('granted'); }
+      constructor(public title: string, public options?: any) { notifications.push({ title, options }); }
+    };
     TestBed.configureTestingModule({});
     service = TestBed.inject(TimerService);
   });
@@ -55,5 +63,14 @@ describe('TimerService', () => {
     service.stop();
     expect(service.state).toBe('idle');
     expect(service.remainingSeconds).toBe(0);
+  }));
+
+  it('finishes and sends notification', fakeAsync(() => {
+    service.start(1);
+    // fast-forward one minute and a bit to ensure completion
+    tick(61_000);
+    expect(service.state).toBe('finished');
+    expect(notifications.length).toBeGreaterThan(0);
+    expect(notifications[0].title).toBe('Time to refill, take a break 🍃');
   }));
 });

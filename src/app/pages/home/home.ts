@@ -16,6 +16,6 @@ import { TimerService } from '../../services/timer.service';
   styleUrl: './home.css',
 })
 export class Home {
-  constructor(private timer: TimerService) {}
+  constructor(public timer: TimerService) {}
   get timerPercent$() { return this.timer.percent$; }
 }

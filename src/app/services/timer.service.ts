@@ -14,7 +14,8 @@ export class TimerService implements OnDestroy {
   // State
   private totalSeconds$ = new BehaviorSubject<number>(0);
   private remainingSeconds$ = new BehaviorSubject<number>(0);
-  private state$ = new BehaviorSubject<'idle' | 'running' | 'paused'>('idle');
+  private state$ = new BehaviorSubject<'idle' | 'running' | 'paused' | 'finished'>('idle');
+  private focusMinutesSubject = new BehaviorSubject<number>(25);
   private destroy$ = new Subject<void>();
   private tickerStop$ = new Subject<void>();
 
@@ -33,6 +34,8 @@ export class TimerService implements OnDestroy {
   readonly isRunning$: Observable<boolean> = this.state$.pipe(map((s) => s === 'running'), distinctUntilChanged());
   readonly isPaused$: Observable<boolean> = this.state$.pipe(map((s) => s === 'paused'), distinctUntilChanged());
   readonly isIdle$: Observable<boolean> = this.state$.pipe(map((s) => s === 'idle'), distinctUntilChanged());
+  readonly isFinished$: Observable<boolean> = this.state$.pipe(map((s) => s === 'finished'), distinctUntilChanged());
+  readonly focusMinutes$: Observable<number> = this.focusMinutesSubject.asObservable();
 
   // snapshot getters
   get remainingSeconds(): number {
@@ -41,8 +44,15 @@ export class TimerService implements OnDestroy {
   get totalSeconds(): number {
     return this.totalSeconds$.value;
   }
-  get state(): 'idle' | 'running' | 'paused' {
+  get state(): 'idle' | 'running' | 'paused' | 'finished' {
     return this.state$.value;
+  }
+  get focusMinutes(): number {
+    return this.focusMinutesSubject.value;
+  }
+  set focusMinutes(value: number) {
+    const v = Math.max(1, Math.floor(Number(value) || 1));
+    this.focusMinutesSubject.next(v);
   }
 
   constructor() {
@@ -120,7 +130,7 @@ export class TimerService implements OnDestroy {
           this.persistToStorage({ remainingSeconds: secLeft });
         }
         if (secLeft <= 0) {
-          this.reset();
+          this.onFinished();
         }
       });
   }
@@ -137,6 +147,14 @@ export class TimerService implements OnDestroy {
     this.clearStorage();
   }
 
+  private onFinished(): void {
+    this.stopTicker();
+    this.remainingSeconds$.next(0);
+    this.state$.next('finished');
+    this.clearStorage();
+    this.notifyCompletion();
+  }
+
   // storage persistence
   private hydrateFromStorage(): void {
     try {
@@ -144,12 +162,16 @@ export class TimerService implements OnDestroy {
       const remaining = Number(localStorage.getItem(TimerService.LS_REMAINING) || '0') || 0;
       const endAtStr = localStorage.getItem(TimerService.LS_END_AT);
       const endAt = endAtStr ? Number(endAtStr) : null;
-      const stateStr = (localStorage.getItem(TimerService.LS_STATE) as 'idle' | 'running' | 'paused' | null) || 'idle';
+  const stateStr = (localStorage.getItem(TimerService.LS_STATE) as 'idle' | 'running' | 'paused' | 'finished' | null) || 'idle';
 
       if (stateStr === 'running' && endAt) {
         const secLeft = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
         if (secLeft <= 0) {
-          this.reset();
+          // countdown already finished while app was closed
+          this.totalSeconds$.next(total);
+          this.remainingSeconds$.next(0);
+          this.state$.next('finished');
+          this.clearStorage();
           return;
         }
         this.totalSeconds$.next(total);
@@ -173,7 +195,7 @@ export class TimerService implements OnDestroy {
     totalSeconds?: number;
     remainingSeconds?: number;
     endAt?: number | null;
-    state?: 'idle' | 'running' | 'paused';
+    state?: 'idle' | 'running' | 'paused' | 'finished';
   }): void {
     try {
       if (partial.totalSeconds !== undefined) localStorage.setItem(TimerService.LS_TOTAL, String(partial.totalSeconds));
@@ -211,5 +233,27 @@ export class TimerService implements OnDestroy {
 
   private writeEndAt(endAt: number): void {
     this.persistToStorage({ endAt });
+  }
+
+  // Notification support
+  async requestNotificationPermission(): Promise<NotificationPermission | null> {
+    try {
+      if (typeof Notification === 'undefined') return null;
+      if (Notification.permission === 'granted') return 'granted';
+      if (Notification.permission === 'denied') return 'denied';
+      return await Notification.requestPermission();
+    } catch {
+      return null;
+    }
+  }
+
+  private notifyCompletion(): void {
+    try {
+      if (typeof Notification === 'undefined') return;
+      if (Notification.permission !== 'granted') return;
+      new Notification('Time to refill, take a break 🍃');
+    } catch {
+      // ignore notification errors
+    }
   }
 }

@@ -1,10 +1,13 @@
-<app-header />
-<main class="main-container">
-    <div>
-        <app-cup [fillPercent]="(timerPercent$ | async) ?? 100" />
-    </div>
-    <app-timer />
+
+<div class="page-container">
+    <app-header />
+    <main class="main-container">
+        <div>
+            <app-cup [fillPercent]="timer.state === 'idle' ? 100 : ((timerPercent$ | async) ?? 0)" />
+        </div>
+        <app-timer />
     <app-theme-selector />
     <app-control />
-</main>
-<app-footer />
+    </main>
+    <app-footer />
+</div>

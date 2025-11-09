@@ -1,0 +1,105 @@
+:root{
+	--timer-bg: red;
+	--timer-border: var(--border-color);
+	--timer-muted: #6b7280;
+}
+
+.time-input{
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.time-input input[type="number"]{
+	border: 1px solid var(--border-color);
+	background: var(--border-color);
+	padding: 0.35rem 0.5rem;
+	padding-right: 0.6rem;
+	border-radius: 8px;
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--text-color);
+	width: 4.5ch;
+	text-align: right;
+}
+
+.step-btn{
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	color: var(--text-color);
+	width: 2rem;
+	height: 2rem;
+    margin: 2px;
+    border: none;
+	border-radius: 6px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background 120ms ease, transform 100ms ease, box-shadow 120ms ease;
+}
+
+.step-btn:hover{
+	background: var(--border-color);
+    opacity: 0.8;
+    transition: all 0.15s ease;
+}
+
+.step-btn:active{
+	transform: translateY(1px);
+}
+
+.step-btn:focus{
+	outline: none;
+}
+
+/* Slight spacing tweaks so input and buttons sit nicely */
+.time-input{ 
+	gap: 0.4rem;
+}
+
+.time-input .min-span{
+	margin-left: 0.4rem;
+}
+
+/* Remove spinner arrows on WebKit */
+.time-input input[type="number"]::-webkit-outer-spin-button,
+.time-input input[type="number"]::-webkit-inner-spin-button{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Remove clear button in IE/Edge */
+.time-input input[type="number"]::-ms-clear{
+	display: none;
+}
+
+.time-input input[type="number"]:focus{
+	outline: 1px solid var(--primary-color);
+}
+
+.time-input input[type="number"]:disabled{
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.time-input .min-span{
+	font-size: 0.875rem;
+	color: var(--text-color);
+	font-weight: 500;
+	user-select: none;
+	margin-left: 0.15rem;
+}
+
+/* Finished state hint — slightly different spacing */
+.time-input + .finished{
+	display: block;
+	margin-top: 0.6rem;
+	color: var(--text-color);
+	font-size: 0.95rem;
+}
+

@@ -1,5 +1,26 @@
-@if (timer.state !== 'idle') {
-	<span>{{ formatted$ | async }}</span>
-} @else {
-	<span>00:00</span>
+@switch (timer.state) {
+	@case ('idle') {
+		<div class="time-input">
+			<button type="button" class="step-btn dec" title="Decrease minutes" aria-label="Decrease minutes" (click)="timer.focusMinutes = (timer.focusMinutes && timer.focusMinutes > 1) ? timer.focusMinutes - 1 : 1">−</button>
+			<input type="number" min="1" [(ngModel)]="timer.focusMinutes" aria-label="Focus minutes" />
+			<span class="min-span">min</span>
+			<button type="button" class="step-btn inc" title="Increase minutes" aria-label="Increase minutes" (click)="timer.focusMinutes = (timer.focusMinutes || 1) + 1">+</button>
+		</div>
+	}
+	@case ('running') {
+		<span>{{ formatted$ | async }}</span>
+	}
+	@case ('paused') {
+		<span>{{ formatted$ | async }}</span>
+	}
+	@case ('finished') {
+		<div class="time-input">
+			<button type="button" class="step-btn dec" title="Decrease minutes" aria-label="Decrease minutes" (click)="timer.focusMinutes = (timer.focusMinutes && timer.focusMinutes > 1) ? timer.focusMinutes - 1 : 1">−</button>
+			<input type="number" min="1" [(ngModel)]="timer.focusMinutes" aria-label="Focus minutes" />
+			<span class="min-span">min</span>
+			<button type="button" class="step-btn inc" title="Increase minutes" aria-label="Increase minutes" (click)="timer.focusMinutes = (timer.focusMinutes || 1) + 1">+</button>
+		</div>
+        <br><br>
+		<span class="finished">Time to refill, take a break 🍃</span>
+	}
 }
