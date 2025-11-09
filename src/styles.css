@@ -90,7 +90,7 @@ header, footer {
 .secondary-btn {
     background-color: transparent;
     font-family: var(--font-family);
-    color: #4B4B4B;
+    color: var(--text-color);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 8px;

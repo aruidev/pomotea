@@ -1,7 +1,7 @@
 <app-header />
 <main class="main-container">
     <div>
-        <app-cup />
+        <app-cup [fillPercent]="(timerPercent$ | async) ?? 100" />
     </div>
     <app-timer />
     <app-theme-selector />
