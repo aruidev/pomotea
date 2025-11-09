@@ -34,17 +34,17 @@ h2 {
   border-radius: 999px;
   border: 1px solid rgba(16,24,40,0.08);
   background: #fff;
-  color: #0f172a;
+  color: #3c3c3c;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
   box-shadow: 0 1px 2px rgba(15,23,42,0.04);
 }
 
 .theme-option input[type="radio"]:checked + .btn-content {
-  background: linear-gradient(180deg, #f0fbef 0%, #e6f6df 100%);
-  border-color: #7bb26c;
-  color: #0b3f0b;
+  background: linear-gradient(210deg, #f0fbef 0%, var(--secondary-color) 100%);
+  border-color: var(--primary-color);
+  color: #3c3c3c;
   box-shadow: 0 8px 20px rgba(43,84,44,0.12), inset 0 -1px 0 rgba(255,255,255,0.25);
   transform: translateY(-2px);
 }
@@ -52,7 +52,7 @@ h2 {
 .theme-option input[type="radio"]:not(:checked) + .btn-content {
   background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
   border-color: rgba(16,24,40,0.06);
-  color: #334155;
+  color: #3c3c3c;
 }
 
 .theme-option input[type="radio"]:focus-visible + .btn-content {

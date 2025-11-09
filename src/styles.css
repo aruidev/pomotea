@@ -1,7 +1,7 @@
 :root, [data-theme="tea"] {
     --font-family: 'Quicksand', sans-serif;
     --primary-color: #6491309f;
-    --secondary-color: #4caf50;
+    --secondary-color: #6491303c;
     --background-color: #F3EDE4;
     --background-color-alt: #EAF5E8;
     --border-color: white;
@@ -12,6 +12,8 @@
 }
 
 [data-theme="coffee"] {
+    --primary-color: #2563EB;
+    --secondary-color: #2563EB9b;
     --background-color: #2e2b28;
     --background-color-alt: #3c3c3c;
     --border-color: #3c3c3c;
@@ -21,13 +23,26 @@
     --liquid-color: #6F4E37;
 }
 
-.html,
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--background-color-alt);
     color: var(--text-color);
     color-scheme: light dark;
     transition: all 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    top: -60px;
 }
 
 .main-container {
