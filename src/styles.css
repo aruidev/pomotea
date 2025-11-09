@@ -1,4 +1,4 @@
-:root, .tea[data-theme="tea"] {
+:root, [data-theme="tea"] {
     --font-family: 'Quicksand', sans-serif;
     --primary-color: #6491309f;
     --secondary-color: #4caf50;
@@ -6,15 +6,17 @@
     --background-color-alt: #EAF5E8;
     --border-color: white;
     --text-color: #3c3c3c;
+    --text-color-alt: #5a5a5a;
     --cup-color: hsl(31, 38%, 70%);
     --liquid-color: #8bc34a81;
 }
 
-.coffee[data-theme="coffee"] {
+[data-theme="coffee"] {
     --background-color: #2e2b28;
     --background-color-alt: #3c3c3c;
     --border-color: #3c3c3c;
     --text-color: #f0ebe3;
+    --text-color-alt: #d4cfc6;
     --cup-color: #dbcabd;
     --liquid-color: #6F4E37;
 }
@@ -25,6 +27,7 @@ body {
     background-color: var(--background-color-alt);
     color: var(--text-color);
     color-scheme: light dark;
+    transition: all 0.2s ease-in-out;
 }
 
 .main-container {
@@ -39,6 +42,7 @@ body {
     background-color: var(--background-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     padding-bottom: 1.5rem;
+    gap: 2rem;
 }
 
 header, footer {
