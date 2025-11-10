@@ -4,6 +4,13 @@
 	--timer-muted: #6b7280;
 }
 
+.clock {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    user-select: none;
+}
+
 .time-input{
 	display: inline-flex;
 	align-items: center;

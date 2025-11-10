@@ -8,10 +8,10 @@
 		</div>
 	}
 	@case ('running') {
-		<span>{{ formatted$ | async }}</span>
+		<span class="clock">{{ formatted$ | async }}</span>
 	}
 	@case ('paused') {
-		<span>{{ formatted$ | async }}</span>
+		<span class="clock">{{ formatted$ | async }}</span>
 	}
 	@case ('finished') {
 		<div class="time-input">
