@@ -10,6 +10,7 @@ export class TimerService implements OnDestroy {
   private static readonly LS_REMAINING = 'pomotea.timer.remainingSeconds';
   private static readonly LS_END_AT = 'pomotea.timer.endAt';
   private static readonly LS_STATE = 'pomotea.timer.state';
+  private static readonly LS_FOCUS_MINUTES = 'pomotea.timer.focusMinutes';
 
   // State
   private totalSeconds$ = new BehaviorSubject<number>(0);
@@ -53,11 +54,14 @@ export class TimerService implements OnDestroy {
   set focusMinutes(value: number) {
     const v = Math.max(1, Math.floor(Number(value) || 1));
     this.focusMinutesSubject.next(v);
+    // persist immediately
+    this.persistFocusMinutes(v);
   }
 
   constructor() {
     // attempt to hydrate from localStorage
     this.hydrateFromStorage();
+    this.hydrateFocusMinutes();
     // if running, start ticker
     if (this.state === 'running') {
       this.startTicker();
@@ -217,6 +221,7 @@ export class TimerService implements OnDestroy {
       localStorage.removeItem(TimerService.LS_REMAINING);
       localStorage.removeItem(TimerService.LS_END_AT);
       localStorage.removeItem(TimerService.LS_STATE);
+      // do NOT remove focus minutes to preserve user preference
     } catch {
       // ignore
     }
@@ -233,6 +238,24 @@ export class TimerService implements OnDestroy {
 
   private writeEndAt(endAt: number): void {
     this.persistToStorage({ endAt });
+  }
+
+  private persistFocusMinutes(value: number): void {
+    try { localStorage.setItem(TimerService.LS_FOCUS_MINUTES, String(value)); } catch { /* ignore */ }
+  }
+
+  private hydrateFocusMinutes(): void {
+    try {
+      const raw = localStorage.getItem(TimerService.LS_FOCUS_MINUTES);
+      if (raw) {
+        const num = Math.max(1, Math.floor(Number(raw) || 1));
+        this.focusMinutesSubject.next(num);
+      } else {
+        this.persistFocusMinutes(this.focusMinutes); // ensure key exists for future reads
+      }
+    } catch {
+      // ignore
+    }
   }
 
   // Notification support

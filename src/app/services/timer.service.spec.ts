@@ -73,4 +73,11 @@ describe('TimerService', () => {
     expect(notifications.length).toBeGreaterThan(0);
     expect(notifications[0].title).toBe('Time to refill, take a break 🍃');
   }));
+
+  it('persists and hydrates focusMinutes', () => {
+    service.focusMinutes = 42;
+    // Simulate app reload by creating new instance with same localStorage
+    const newService = new TimerService();
+    expect(newService.focusMinutes).toBe(42);
+  });
 });
