@@ -36,13 +36,14 @@ body {
     color: var(--text-color);
     color-scheme: light dark;
     transition: all 0.2s ease-in-out;
+}
+
+.page-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    position: relative;
-    top: -60px;
+    justify-content: center;
+    margin-top: -40px;
 }
 
 .main-container {
@@ -90,7 +91,7 @@ header, footer {
 .secondary-btn {
     background-color: transparent;
     font-family: var(--font-family);
-    color: #4B4B4B;
+    color: var(--text-color);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 8px;

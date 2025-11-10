@@ -1,1 +1,32 @@
-<button class="primary-btn"><lucide-icon [img]="PlayIcon" [size]="20"></lucide-icon>Start Focus</button>
+@switch (timer.state) {
+    @case ('idle') {
+        <button class="primary-btn" (click)="startTimer()">
+            <lucide-icon [img]="PlayIcon" [size]="20"></lucide-icon>Start Focus
+        </button>
+    }
+    @case ('running') {
+        <div class="control-group">
+            <button class="primary-btn" (click)="pauseTimer()">
+                <lucide-icon [img]="PauseIcon" [size]="20"></lucide-icon>Pause Focus
+            </button>
+            <button class="secondary-btn" (click)="stopTimer()">
+                <lucide-icon [img]="StopIcon" [size]="20"></lucide-icon>Stop Focus
+            </button>
+        </div>
+    }
+    @case ('paused') {
+        <div class="control-group">
+            <button class="primary-btn" (click)="resumeTimer()">
+        <lucide-icon [img]="PlayIcon" [size]="20"></lucide-icon>Resume Focus
+        </button>
+        <button class="secondary-btn" (click)="stopTimer()">
+            <lucide-icon [img]="StopIcon" [size]="20"></lucide-icon>Stop Focus
+        </button>
+    </div>
+    }
+    @case ('finished') {
+        <button class="primary-btn" (click)="startTimer()">
+            <lucide-icon [img]="PlayIcon" [size]="20"></lucide-icon>Start Focus
+        </button>
+    }
+}
