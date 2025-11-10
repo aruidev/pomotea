@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CupComponent {
   // Percentage filled [0, 100]. You can set this from a parent or a service.
-  @Input() fillPercent = 60;
+  @Input() fillPercent = 100;
 
   // Computed 'y' for the clipping rect in the 200x200 viewBox.
   get liquidY(): number {
