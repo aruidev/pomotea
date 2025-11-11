@@ -23,8 +23,11 @@
     --liquid-color: #6F4E37;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -35,7 +38,7 @@ body {
     background-color: var(--background-color-alt);
     color: var(--text-color);
     color-scheme: light dark;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.15s ease;
 }
 
 .page-container {
@@ -43,27 +46,28 @@ body {
     flex-direction: column;
     min-height: 100vh;
     justify-content: center;
-    margin-top: -40px;
+    padding-inline: 20px;
 }
 
 .main-container {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    place-self: center;
     border: 2px solid var(--border-color);
     border-radius: 12px;
     max-width: fit-content;
-    margin: 0 auto;
+    margin: 20px;
     background-color: var(--background-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     padding-bottom: 1.5rem;
     gap: 2rem;
 }
 
-header, footer {
+footer {
     text-align: center;
-    padding: 1rem;
+    padding-bottom: 1rem;
 }
 
 .primary-btn {
@@ -107,4 +111,35 @@ header, footer {
 .secondary-btn:hover {
     opacity: 0.8;
     transition: opacity 0.3s ease;
+}
+
+.github-star {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #3c3c3c;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    padding: 0.25rem;
+    border-radius: 50px;
+    width: fit-content;
+}
+
+.github-star:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+    transition: all 0.15s ease;
+}
+
+@media screen and (max-width: 600px) {
+    .main-container {
+        width: 100%;
+        margin: 10px;
+        padding: 1rem;
+        padding-bottom: 1.5rem;
+    }
+
 }

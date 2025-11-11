@@ -16,7 +16,6 @@ export class ControlComponent {
   constructor(public timer: TimerService) {}
 
   startTimer() {
-    // Request OS notification permission on user gesture
     this.timer.requestNotificationPermission();
     this.timer.start(this.timer.focusMinutes);
   }

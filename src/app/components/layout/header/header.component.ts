@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-
+  
+  readonly githubUrl = 'https://github.com/aruidev/pomotea';
 }

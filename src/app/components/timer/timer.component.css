@@ -17,6 +17,12 @@
 	gap: 0.5rem;
 }
 
+.time-input input[type="number"]:hover {
+	opacity: 0.8;
+	transition: opacity 0.15s ease;
+}
+
+
 .time-input input[type="number"]{
 	border: 1px solid var(--border-color);
 	background: var(--border-color);
@@ -86,7 +92,8 @@
 }
 
 .time-input input[type="number"]:focus{
-	outline: 1px solid var(--primary-color);
+	outline: 1px solid var(--text-color-alt);
+	opacity: 1;
 }
 
 .time-input input[type="number"]:disabled{
